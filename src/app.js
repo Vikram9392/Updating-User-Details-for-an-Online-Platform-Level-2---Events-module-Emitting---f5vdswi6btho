@@ -13,8 +13,8 @@ app.use(express.json());
 // Write PATCH endpoint for editing user details
 app.patch("/api/v1/details/:id",(req,res)=>{
 const id=req.params.id;
-userDetails.find((userDetails)=>userDetails.id=id);
-if(!userDetails){
+const userFound=userDetails.find((userDetails)=>userDetails.id=id);
+if(!userFound){
 return res.status(404).json({
   status: "failed", 
   message: "User not found!" 
