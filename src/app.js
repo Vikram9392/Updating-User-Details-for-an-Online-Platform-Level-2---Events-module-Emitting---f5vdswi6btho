@@ -11,6 +11,21 @@ const userDetails = JSON.parse(
 app.use(express.json());
 
 // Write PATCH endpoint for editing user details
+app.patch("/api/v1/details/:id",(req,res)=>{
+const id=req.params.id;
+userDetails.find((userDetails)=>userDetails.id=id);
+if(!userDetails){
+return res.status(404).json({
+  status: "failed", 
+  message: "User not found!" 
+})
+}
+return res.status(200).json({
+  status: "success",
+  message: "User details updated successfully for id: 1",
+  data:{userDetails:req.body}
+})
+})
 
 // POST endpoint for registering new user
 app.post("/api/v1/details", (req, res) => {
